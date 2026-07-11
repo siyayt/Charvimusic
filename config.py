@@ -27,7 +27,7 @@ OWNER_ID = int(getenv("OWNER_ID", 8274033012))
 OWNER_USERNAME = getenv("OWNER_USERNAME", "lololo")
 API_URL = getenv("API_URL", 'https://pytdbotapi.thequickearn.xyz') #youtube song url
 VIDEO_API_URL = getenv("VIDEO_API_URL", 'https://api.video.thequickearn.xyz')
-API_KEY = getenv("API_KEY", "NxGBNexGenBots2d8c91")
+API_KEY = getenv("API_KEY", "")
 
 BOT_USERNAME = getenv("BOT_USERNAME", "musicbot")
 BOT_NAME = getenv("BOT_NAME", "lololo")
