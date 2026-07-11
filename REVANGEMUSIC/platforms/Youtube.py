@@ -6,7 +6,7 @@ import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from pyrogram.types import Message
-from youtubesearchpython import VideosSearch
+from py_yt import VideosSearch
 
 API_URL = os.environ.get("SHRUTI_API_URL", "https://api01.shrutibots.site")
 
