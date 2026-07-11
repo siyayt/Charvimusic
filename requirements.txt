@@ -35,7 +35,7 @@ emojis
 speedtest-cli
 spotipy
 tgcrypto
-telegraph
+telegram 
 unidecode
 yt-dlp
 youtube-search
@@ -57,3 +57,4 @@ googlesearch-python
 sympy
 PyGithub
 ntgcalls>=1.3.3
+tgcrypto
