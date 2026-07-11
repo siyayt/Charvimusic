@@ -35,7 +35,7 @@ emojis
 speedtest-cli
 spotipy
 tgcrypto
-telegram 
+telegraph 
 unidecode
 yt-dlp
 youtube-search
