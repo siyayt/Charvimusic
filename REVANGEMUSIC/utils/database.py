@@ -9,8 +9,8 @@
 import random
 from typing import Dict, List, Union
 
-from KRITIMUSIC import userbot
-from KRITIMUSIC.core.mongo import mongodb
+from REVANGEMUSIC import userbot
+from REVANGEMUSIC.core.mongo import mongodb
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
