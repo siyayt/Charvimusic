@@ -1,15 +1,29 @@
 # ======================================================
-# ©️ 2025-26 All Rights Reserved by Revange 😎
+# ©️ 2025-26 All Rights Reserved by Kirti 😎
 
-# 🧑‍💻 Developer : t.me/dmcatelegram
-# 🔗 Source link : https://github.com/hexamusic/REVANGEMUSIC
-# 📢 Telegram channel : t.me/dmcatelegram
+# 🧑‍💻 Developer : t.me/lll_APNA_BADNAM_BABY_lll
+# 🔗 Source link : https://github.com/Badnam019
+# 📢 Telegram channel : t.me/lll_APNA_BADNAM_BABY_lll
 # =======================================================
 
+import asyncio
+from contextlib import suppress
+from string import ascii_lowercase
+from typing import Dict, Union
+
+from pyrogram import filters, enums
+from pyrogram.enums import ChatMembersFilter
+from pyrogram.types import (
+    CallbackQuery,
+    Message,
+)
+
+from REVANGEMUSIC import app
 from REVANGEMUSIC.misc import SUDOERS
 from REVANGEMUSIC.core.mongo import mongodb
 from REVANGEMUSIC.utils.errors import capture_err
 from REVANGEMUSIC.utils.keyboard import ikb
+from REVANGEMUSIC.utils.database import save_filter
 from REVANGEMUSIC.utils.functions import extract_user, extract_user_and_reason
 from REVANGEMUSIC.utils.permissions import adminsOnly, member_permissions
 from config import BANNED_USERS
@@ -251,9 +265,9 @@ async def check_warns(_, message: Message):
     await message.reply_text(f"**{mention} ʜᴀs** `{warns}/3` **ᴡᴀʀɴɪɴɢs**")
 
 # ======================================================
-# ©️ 2025-26 All Rights Reserved by Revange 😎
+# ©️ 2025-26 All Rights Reserved by Kirti 😎
 
-# 🧑‍💻 Developer : t.me/dmcatelegram
-# 🔗 Source link : https://github.com/hexamusic/REVANGEMUSIC
-# 📢 Telegram channel : t.me/dmcatelegram
+# 🧑‍💻 Developer : t.me/lll_APNA_BADNAM_BABY_lll
+# 🔗 Source link : https://github.com/Badnam019
+# 📢 Telegram channel : t.me/lll_APNA_BADNAM_BABY_lll
 # =======================================================
