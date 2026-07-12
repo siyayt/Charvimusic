@@ -20,9 +20,9 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls, exceptions, types
 from pytgcalls.pytgcalls_session import PyTgCallsSession
 import config
-from ShiviMusic import LOGGER, YouTube, app
-from ShiviMusic.misc import db
-from ShiviMusic.utils.database import (
+from REVANGEMUSIC import LOGGER, YouTube, app
+from REVANGEMUSIC.misc import db
+from REVANGEMUSIC.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_lang,
@@ -35,13 +35,13 @@ from ShiviMusic.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from ShiviMusic.utils.autoplay import fetch_autoplay_track, remember_played
-from ShiviMusic.utils.exceptions import AssistantErr
-from ShiviMusic.utils.formatters import check_duration, seconds_to_min, speed_converter
-from ShiviMusic.utils.inline.play import stream_markup
-from ShiviMusic.utils.stream.autoclear import auto_clean
-from ShiviMusic.utils.stream.queue import put_queue
-from ShiviMusic.utils.thumbnails import get_thumb as gen_thumb
+from REVANGEMUSIC.utils.autoplay import fetch_autoplay_track, remember_played
+from REVANGEMUSIC.utils.exceptions import AssistantErr
+from REVANGEMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
+from REVANGEMUSIC.utils.inline.play import stream_markup
+from REVANGEMUSIC.utils.stream.autoclear import auto_clean
+from REVANGEMUSIC.utils.stream.queue import put_queue
+from REVANGEMUSIC.utils.thumbnails import get_thumb as gen_thumb
 from strings import get_string
 
 autoend = {}
@@ -57,7 +57,7 @@ class Call(PyTgCalls):
         PyTgCallsSession.notice_displayed = True
 
         self.userbot1 = Client(
-            name="ShiviAss1",
+            name="SonaAss1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -65,7 +65,7 @@ class Call(PyTgCalls):
         self.one = PyTgCalls(self.userbot1, cache_duration=100)
 
         self.userbot2 = Client(
-            name="ShiviAss2",
+            name="SonaAss2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
@@ -73,7 +73,7 @@ class Call(PyTgCalls):
         self.two = PyTgCalls(self.userbot2, cache_duration=100)
 
         self.userbot3 = Client(
-            name="ShiviAss3",
+            name="SonaAss3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
@@ -81,7 +81,7 @@ class Call(PyTgCalls):
         self.three = PyTgCalls(self.userbot3, cache_duration=100)
 
         self.userbot4 = Client(
-            name="ShiviAss4",
+            name="SonaAss4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -89,7 +89,7 @@ class Call(PyTgCalls):
         self.four = PyTgCalls(self.userbot4, cache_duration=100)
 
         self.userbot5 = Client(
-            name="ShiviAss5",
+            name="SonaAss5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
