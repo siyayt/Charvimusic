@@ -10,7 +10,6 @@ from REVANGEMUSIC.misc import SUDOERS
 from REVANGEMUSIC.core.mongo import mongodb
 from REVANGEMUSIC.utils.errors import capture_err
 from REVANGEMUSIC.utils.keyboard import ikb
-from REVANGEMUSIC.utils.database import save_filter
 from REVANGEMUSIC.utils.functions import extract_user, extract_user_and_reason
 from REVANGEMUSIC.utils.permissions import adminsOnly, member_permissions
 from config import BANNED_USERS
