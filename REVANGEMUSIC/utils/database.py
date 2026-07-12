@@ -1,16 +1,18 @@
-# ======================================================
-# ©️ 2025-26 All Rights Reserved by Revange 😎
-
-# 🧑‍💻 Developer : t.me/dmcatelegram
-# 🔗 Source link : https://github.com/hexamusic/REVANGEMUSIC
-# 📢 Telegram channel : t.me/dmcatelegram
-# =======================================================
+# ===========================================================
+# ©️ 2025-26 All Rights Reserved by Purvi Bots (Im-Notcoder) 🚀
+# 
+# This source code is under MIT License 📜
+# ❌ Unauthorized forking, importing, or using this code
+#    without giving proper credit will result in legal action ⚠️
+# 
+# 📩 DM for permission : @TheSigmaCoder
+# ===========================================================
 
 import random
 from typing import Dict, List, Union
 
-from REVANGEMUSIC import userbot
-from REVANGEMUSIC.core.mongo import mongodb
+from ShiviMusic import userbot
+from ShiviMusic.core.mongo import mongodb
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
@@ -29,7 +31,9 @@ playtypedb = mongodb.playtypedb
 skipdb = mongodb.skipmode
 sudoersdb = mongodb.sudoers
 usersdb = mongodb.tgusersdb
-filtersdb = mongodb.filters
+playlistdb = mongodb.playlist
+autoplaydb = mongodb.autoplaymode
+
 
 # Shifting to memory [mongo sucks often]
 active = []
@@ -40,24 +44,61 @@ count = {}
 channelconnect = {}
 langm = {}
 loop = {}
+autoplaycache = {}
 maintenance = []
 nonadmin = {}
 pause = {}
 playmode = {}
 playtype = {}
 skipmode = {}
+playlist = []
 
 
+async def _get_playlists(chat_id: int) -> Dict[str, int]:
+    _notes = await playlistdb.find_one({"chat_id": chat_id})
+    if not _notes:
+        return {}
+    return _notes["notes"]
 
-async def save_filter(chat_id: int, name: str, _filter: dict):
-    name = name.lower().strip()
-    _filters = await _get_filters(chat_id)
-    _filters[name] = _filter
-    await filtersdb.update_one(
-        {"chat_id": chat_id},
-        {"$set": {"filters": _filters}},
-        upsert=True,
+
+async def get_playlist_names(chat_id: int) -> List[str]:
+    _notes = []
+    for note in await _get_playlists(chat_id):
+        _notes.append(note)
+    return _notes
+
+
+async def get_playlist(chat_id: int, name: str) -> Union[bool, dict]:
+    name = name
+    _notes = await _get_playlists(chat_id)
+    if name in _notes:
+        return _notes[name]
+    else:
+        return False
+
+
+async def save_playlist(chat_id: int, name: str, note: dict):
+    name = name
+    _notes = await _get_playlists(chat_id)
+    _notes[name] = note
+    await playlistdb.update_one(
+        {"chat_id": chat_id}, {"$set": {"notes": _notes}}, upsert=True
     )
+
+
+async def delete_playlist(chat_id: int, name: str) -> bool:
+    notesd = await _get_playlists(chat_id)
+    name = name
+    if name in notesd:
+        del notesd[name]
+        await playlistdb.update_one(
+            {"chat_id": chat_id},
+            {"$set": {"notes": notesd}},
+            upsert=True,
+        )
+        return True
+    return False
+
 
 async def get_assistant_number(chat_id: int) -> str:
     assistant = assistantdict.get(chat_id)
@@ -87,7 +128,7 @@ async def set_assistant_new(chat_id, number):
 
 
 async def set_assistant(chat_id):
-    from REVANGEMUSIC.core.userbot import assistants
+    from ShiviMusic.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -101,7 +142,7 @@ async def set_assistant(chat_id):
 
 
 async def get_assistant(chat_id: int) -> str:
-    from REVANGEMUSIC.core.userbot import assistants
+    from ShiviMusic.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -128,7 +169,7 @@ async def get_assistant(chat_id: int) -> str:
 
 
 async def set_calls_assistant(chat_id):
-    from REVANGEMUSIC.core.userbot import assistants
+    from ShiviMusic.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -141,7 +182,7 @@ async def set_calls_assistant(chat_id):
 
 
 async def group_assistant(self, chat_id: int) -> int:
-    from REVANGEMUSIC.core.userbot import assistants
+    from ShiviMusic.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -243,6 +284,28 @@ async def get_loop(chat_id: int) -> int:
 
 async def set_loop(chat_id: int, mode: int):
     loop[chat_id] = mode
+
+
+async def is_autoplay_on(chat_id: int) -> bool:
+    cached = autoplaycache.get(chat_id)
+    if cached is not None:
+        return cached
+    data = await autoplaydb.find_one({"chat_id": chat_id})
+    status = bool(data)
+    autoplaycache[chat_id] = status
+    return status
+
+
+async def autoplay_on(chat_id: int):
+    autoplaycache[chat_id] = True
+    await autoplaydb.update_one(
+        {"chat_id": chat_id}, {"$set": {"chat_id": chat_id}}, upsert=True
+    )
+
+
+async def autoplay_off(chat_id: int):
+    autoplaycache[chat_id] = False
+    await autoplaydb.delete_one({"chat_id": chat_id})
 
 
 async def get_cmode(chat_id: int) -> int:
@@ -665,11 +728,10 @@ async def remove_banned_user(user_id: int):
         return
     return await blockeddb.delete_one({"user_id": user_id})
 
-
-# ======================================================
-# ©️ 2025-26 All Rights Reserved by Revange 😎
-
-# 🧑‍💻 Developer : t.me/dmcatelegram
-# 🔗 Source link : https://github.com/hexamusic/REVANGEMUSIC
-# 📢 Telegram channel : t.me/dmcatelegram
-# =======================================================
+# ===========================================================
+# ©️ 2025-26 All Rights Reserved by Purvi Bots (Im-Notcoder) 😎
+# 
+# 🧑‍💻 Developer : t.me/TheSigmaCoder
+# 🔗 Source link : GitHub.com/Im-Notcoder/Shivi-V2
+# 📢 Telegram channel : t.me/Purvi_Bots
+# ===========================================================
