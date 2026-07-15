@@ -40,7 +40,7 @@ MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/kirtibots/Charvimusic-")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/siyayt/Charvimusic")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 
 GIT_TOKEN = getenv("GIT_TOKEN", "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P")
@@ -50,8 +50,8 @@ GIT_TOKEN = getenv("GIT_TOKEN", "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P")
 LOGGER_ID = int(getenv("LOGGER_ID", -1002002218073))
 
 PRIVACY_LINK = getenv("PRIVACY_LINK", "https://telegra.ph/Privacy-Policy-for-YukkiMusic-08-30")
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/kriti_bot_update")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/KRITI_SUPPORT_GROUP")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/StylishNameFont")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/Hindi_Shayari_Lovers")
 
 # -------------------- [ LIMITS & TIME SETTINGS ] --------------------
 
